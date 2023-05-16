@@ -40,3 +40,8 @@ CONTAINERIZING REST API USING DOCKER FOR PRODUCTION ENVIRONMENT REQUIREMENTS
 //use docker file
 -Docker Engine takes docker files and use i to build docker image
 -Push to cloud using Container registry
+//benefits
+-effiect use of resources
+-lots of caching usisg layers
+-fast start
+-each container runs in isolation
