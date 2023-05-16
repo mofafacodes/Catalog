@@ -53,13 +53,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 { 
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI( c => c.SwaggerEndpoint("swagger/v1/swagger.json", "Catalog"));
 }
 
 app.UseRouting();
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
@@ -71,7 +75,7 @@ app.UseEndpoints(endpoints =>
     {
         //specify predicate to filter out which health checks you want to include in endpoint
         Predicate = (check) => check.Tags.Contains("ready"),
-        //customizing message to recieve when making helath checks
+        //customizing message to recieve when making health checks
         ResponseWriter = async(context, report) =>
         {
             var result = JsonSerializer.Serialize(

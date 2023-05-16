@@ -2,6 +2,8 @@
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 //viewing databse ports running
 docker ps
+
+
 //stopping a running container
 docker stop "name-of-container" ie.mongo
 //checking existing volumes
@@ -11,9 +13,30 @@ docker volume rm "name-of-volume" ie mongondbdata
 //restarting container with brand new volume with environment variables
 // adding user name and password
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=pass#word1 mongo
+
+
 //initialiazing .NET Secret Manager
 dotnet user-secrets init
 //adding secrets
 dotnet user-secrets set MongoDBSettings: Password pass#word1
 //adding a health check package using nuget package manager
 dotnet add package AspNetCore.HealthChecks.MongoDb
+
+
+CONTAINERIZING REST API USING DOCKER FOR PRODUCTION ENVIRONMENT REQUIREMENTS
+//Rest API
+//Dependencies
+//.NET & Runtime
+//Opertaion System - Linux
+//DB Requirements
+-Prepare a box
+-Pick the right OS
+//Docker File - Configuration
+-OS
+-.NET/ASP.NET Runtime
+-Dependencies
+-Where to place the files
+-How to the start the REST API
+//use docker file
+-Docker Engine takes docker files and use i to build docker image
+-Push to cloud using Container registry
