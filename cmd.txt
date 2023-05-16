@@ -45,3 +45,15 @@ CONTAINERIZING REST API USING DOCKER FOR PRODUCTION ENVIRONMENT REQUIREMENTS
 -lots of caching usisg layers
 -fast start
 -each container runs in isolation
+
+
+//Building docker image command 
+docker build -t catalog:v1 .
+//creating docker network to enable it talk to the db
+docker create network ner7tutorial
+//running db to connect it docker network created
+docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=pass#word1 --network=net7tutorial mongo
+//view docker images
+docker images
+//start running catalog container
+docker run it -rm 8080:80 -e MongoDBSettings:Host:mongo -e MongoDBSettings:Password:pass#word1 --network=net7tutorial catalog:v1
