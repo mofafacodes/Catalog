@@ -1,4 +1,19 @@
 //initializing mongodb database commands with docker
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
-//viewing databse ports
+//viewing databse ports running
 docker ps
+//stopping a running container
+docker stop "name-of-container" ie.mongo
+//checking existing volumes
+docker volume ls
+//removing a volume
+docker volume rm "name-of-volume" ie mongondbdata
+//restarting container with brand new volume with environment variables
+// adding user name and password
+docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=pass#word1 mongo
+//initialiazing .NET Secret Manager
+dotnet user-secrets init
+//adding secrets
+dotnet user-secrets set MongoDBSettings: Password pass#word1
+//adding a health check package using nuget package manager
+dotnet add package AspNetCore.HealthChecks.MongoDb
